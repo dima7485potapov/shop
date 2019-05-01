@@ -22,5 +22,8 @@ def add_user (request):
 
 	response = HttpResponse()
 	return response
+def get_user(request):
+	user = User.objects.filter()
+	return render(request, 'app/user.html', {'user': user})	
 
 

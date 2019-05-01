@@ -25,3 +25,9 @@ def delete_order(request):
 	order_id = body_dict["id"]
 	order = Order.objects.delete(id = order_id)
 	return HttpResponse(order) 
+def get_order(request):
+	#Получаем продукт
+	order = Order.objects.filter()
+
+	#Отправляем
+	return render(request, 'app/order.html', {'order': order})	
