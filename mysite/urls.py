@@ -9,7 +9,8 @@ from app import viewsOrder
 
 urlpatterns = [
     path('admin', admin.site.urls), 
-    path('product', viewsProduct.get_product), 
+    path('product', viewsProduct.get_products), 
     path('product/add', viewsProduct.add_product),
     path('product/delete', viewsProduct.delete_product),
+    path('product/<int:product_id>', viewsProduct.get_product)
 ]
