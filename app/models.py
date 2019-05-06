@@ -13,6 +13,7 @@ class Product(models.Model):
 	category = models.CharField(max_length = 20)
 	date = models.DateField()
 	dostup = models.BooleanField()
+	imagePath = models.CharField(max_length = 200, default="pictures/emptyProduct.png");	
 
 class User(models.Model):
 	name = models.CharField(max_length=125)

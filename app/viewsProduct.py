@@ -3,6 +3,7 @@ from . models import Product
 from . models import Creator
 from django.http import HttpResponse
 import json
+from django.db.models import Q
 
 #Получаем страницу с продуктами
 def get_products(request):
@@ -12,16 +13,20 @@ def get_products(request):
 	category = request.GET.get('category')
 	order = request.GET.get('order')
 	if order == '1':
-		order = "prise";
+		order = "prise"
 	else:
 	    order ="-prise"
 
-	if  maxPrice == "":
-	    maxPrice = "100000000";
-	if  minPrice == "":
-	    minPrice = "-100000000";        
-
-	products = Product.objects.order_by(order).filter(prise__lte = int(maxPrice),prise__gte = int(minPrice),category = category)
+	q_objects = Q()
+	
+	if  type(maxPrice) == int:       
+		q_objects.add(Q(prise__lte=int(maxPrice)), Q.AND)
+	if  type(minPrice) == int:       
+		q_objects.add(Q(prise__gte=int(maxPrice)), Q.AND)
+	if type(category) == str:
+		q_objects.add(Q(category = category), Q.AND)
+	print(q_objects)
+	products = Product.objects.order_by(order).filter(q_objects)
 	return render(request, 'app/products.html', {'products': products})
 
 def get_product(request,product_id):

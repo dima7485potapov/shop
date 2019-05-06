@@ -2,20 +2,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Продукты</title>
-	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<title>Продукты</title> 
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+   <style>
+    .productButton {
+        height: 20px;
+        color: white;
+        width: 70px;
+        border-radius: 3px;
+        border: 0px;
+        background-color: rgb(0, 173, 0);
+        font-size: 10px;
+        transition: background-color 0.3s ease-out;
+    }
+
+    .productButton:hover{
+        background-color: green;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        margin-right: 10px;
+    }
+
+    .product {
+        display: flex;
+        padding: 10px;
+    }
+   </style>
 </head>
     <meta charset="utf-8">
 	<body> 
-		{% for product in products %}
-		    <input type="button" onclick = get_order({{product}})>
-            <div>{{ product.name }}</div> 
-            <div>{{ product.prise}}</div>
-            <div>{{ product.category }}</div> 
-            <div>{{ product.date}}</div> 
-        {% endfor %}
-        
+        <div class="container">
+            <div class="row">          
+                    {% for product in products %}
+                    <div class="col-xl-3 col-md-6 col-sm-12 product">
+                        <div class="picture">  
+                            <img src="{% static product.imagePath  %}"> 
+                        </div>
+                        <div class="data">        
+                            <div><b>{{ product.name }}</b></div> 
+                            <div>{{ product.prise}} грн.</div>
+                            <div><small>{{ product.category }}</small></div> 
+                            <input class="productButton" type="button" productId="{{ product.id }}" value="Подробнее">
+                        </div>
+                    </div>              
+                    {% endfor %}
+                
+            </div>
+        </div>
 	</body>
-<script src="{% static 'javascript/main.js' %}"></script>	
+    <script src="{% static 'javascript/products.js' %}"></script>	
   
 </html>

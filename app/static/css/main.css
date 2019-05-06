@@ -1,16 +1,9 @@
-.title {
-    text-align: center;
+input {
+    height: 10px;
+    background-color: red;
 }
 
-.container{
-    padding: 10px;
-    font-size: 20px;
-    margin: auto;
-}
-
-.form2{
-    margin-top: 15px ;
-    color: bleck;
-    text-align: center
+body {
+    background-color: red;
 }
 
